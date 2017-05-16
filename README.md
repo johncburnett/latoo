@@ -15,8 +15,8 @@ where
 ```
 This code allows for ways of modulating through this chaotic system. 
 
-### Installation Execution
-Clone to apps folder in your OF directory. Builds on mac and linux. 
+### Installation and Execution
+Clone to apps folder in your OF directory. Builds on linux and osx. 
 ```
 $ make
 $ make run
