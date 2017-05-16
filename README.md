@@ -1,1 +1,28 @@
 # latoo
+
+### The Latoocarfian Attractor
+is defined corecursively as follows (with a Z dimension added by `john`):
+```
+xn = sin(b * yi) + c * sin(b * xi)
+yn = sin(a * yi) + b * sin(a * xi)
+zn = sin(a * xi) + d * sin(a * yi)
+
+where
+-3.0 < a < 3.0
+-3.0 < b < 3.0
+ 0.5 < c < 1.5
+ 0.5 < d < 1.5
+```
+This code allows for ways of modulating through this chaotic system. 
+
+### Installation Execution
+Clone to apps folder in your OF directory. Builds on mac and linux. 
+```
+$ make
+$ make RunRelease
+```
+
+### Dependencies
+* openFrameworks 0.93
+* ofxTF
+* ofxSyphon
