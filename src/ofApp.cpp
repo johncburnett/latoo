@@ -16,7 +16,7 @@ void ofApp::setup(){
     
     // set camera
     camLoadPos("camPos");
-    
+   
     // syphon
 #if __APPLE__
     mainOutputSyphonServer.setName("Screen Output");
@@ -59,7 +59,7 @@ void ofApp::draw(){
     
     ofDisableAlphaBlending();
     
-    // Syphon
+    // syphon
 #if __APPLE__
     mClient.draw(50, 50);
     mainOutputSyphonServer.publishScreen();
@@ -82,14 +82,12 @@ void ofApp::initShaders(void) {
         position[i * 3 + 2] = zn;
     }
     
-    // init shaders
+    // shaders
     tf.setup(numParticles, "shaders/transformFeedback.vert");
     tf.addBufferObject("inPosition", "outPosition", 3, GL_RGB32F, position);
     tf.generate();
-    
     renderShader.load("shaders/render");
 }
-
 
 //--------------------------------------------------------------
 void ofApp::initGUI(void) {
@@ -105,14 +103,14 @@ void ofApp::initGUI(void) {
     gui.add(scale.set("scale", 200, 1, 1000));
     gui.add(opacity.set("opacity", 0.08, 0.0, 0.5));
 
-    params  = "  's' to modulate coefficients\n";
+    params  = "\n  's' to modulate coefficients\n";
     params += "  'g' to randomize rate of change\n";
     params += "  'b' to reset coefficients\n";
     params += "  'r' to reset and pause\n";
     params += "   <UP>  to accelerate\n";
     params += "  <DOWN> to decelerate\n\n";
     params += "  'f' for fullscreen\n";
-    gui.add(keys.setup("keys bindings\n", params));
+    gui.add(keys.setup("keys bindings", params));
 }
 
 //--------------------------------------------------------------

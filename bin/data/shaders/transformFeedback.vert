@@ -22,7 +22,14 @@ vec3 latoo(vec3 pos) {
     return posn;
 }
 
+vec3 latoo2(vec3 pos) {
+    vec3 posn;
+    posn.x = sin(b*pos.y) + (c * sin(b*pos.x)) + sin(d * sin(b*pos.z));
+    posn.y = sin(a*pos.x) + (d * sin(a*pos.y)) + sin(c * sin(a*pos.z));
+    posn.z = sin(a*pos.z) + (c * sin(b*pos.x)) + sin(d * sin(a*pos.y));
+    return posn;
+}
 
 void main() {
-    outPosition = latoo(inPosition);
+    outPosition = latoo2(inPosition);
 }

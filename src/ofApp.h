@@ -8,7 +8,7 @@
     #include "ofxSyphon.h" // mac exclusive
     #define numParticles 3000000 // dGPU in OSX
 #else
-    #define numParticles 2200000 // iGPU in Linux
+    #define numParticles 2000000 // iGPU in Linux
 #endif
 
 class ofApp : public ofBaseApp{

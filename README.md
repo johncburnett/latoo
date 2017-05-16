@@ -17,9 +17,9 @@ This code allows for ways of modulating through this chaotic system.
 
 ### Installation and Execution
 Clone to apps folder in your OF directory. Builds on linux and osx. 
-```
-$ make
-$ make run
+``` bash
+$ make -j4  # thread up
+$ make run  # run release
 ```
 
 ### Dependencies
