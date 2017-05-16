@@ -2,7 +2,7 @@
 An openFrameworks and GLSL implementation of the Latoocarfian attractor. Transform feedback is used to corecursively calculate the position of each particle, entirely within the GPU. 
 
 ### The Latoocarfian Attractor
-is defined by the following differential equation (with modifications by `john`):
+is defined by the following differential equations (with modifications by `john`):
 ```
 xn = sin(b * yi) + c * sin(b * xi)
 yn = sin(a * yi) + b * sin(a * xi)

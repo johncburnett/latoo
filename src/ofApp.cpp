@@ -2,6 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    ofSetFrameRate(FRAMERATE);
     ofBackground(0);
     
     // init class vars
@@ -104,7 +105,7 @@ void ofApp::initGUI(void) {
     gui.add(opacity.set("opacity", 0.08, 0.0, 0.5));
 
     params  = "\n  's' to modulate coefficients\n";
-    params += "  'g' to randomize rate of change\n";
+    params += "  'g' to randomize rates";
     params += "  'b' to reset coefficients\n";
     params += "  'r' to reset and pause\n";
     params += "   <UP>  to accelerate\n";

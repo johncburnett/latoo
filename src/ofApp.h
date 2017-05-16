@@ -11,6 +11,9 @@
     #define numParticles 2000000 // iGPU in Linux
 #endif
 
+#define FRAMERATE 30
+
+
 class ofApp : public ofBaseApp{
 
 	public:
