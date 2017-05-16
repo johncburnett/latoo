@@ -1,3 +1,13 @@
+# build directories and executable
+bin/latoo
+bin/libs/
+obj/
+
+# osx garbage
+.DS_Store
+
+# vim garbage
 .*.swp
 .*.swo
+Session.vim
 compile_commands.json

@@ -148,7 +148,6 @@ void ofApp::keyPressed(int key){
         dd = ofRandom(0.999, 1.001);
     }
     
-    else if(key == 'f') { ofToggleFullscreen(); }
     else if(key == 'f') { ofToggleFullscreen(); camLoadPos("camPos"); }
     else if(key == 'c') { camSavePos("camPos"); }
     else if(key == 'l') { camLoadPos("camPos"); }

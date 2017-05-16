@@ -1,7 +1,5 @@
 #version 330
 
-//#define PI 3.14159265358979
-
 #pragma include "util.glsl"
 //#pragma include "noise.glsl"
 
@@ -31,5 +29,5 @@ vec3 latoo2(vec3 pos) {
 }
 
 void main() {
-    outPosition = latoo2(inPosition);
+    outPosition = latoo(inPosition);
 }
