@@ -10,42 +10,9 @@ void ofApp::setup(){
     a = 2; b = 1.526; c = 1.455; d = 1.139;
     da = db = dc = dd = 1;
     scale = 200;
-    spacing = 1;
 
-    // init coord buffer
-    float * position = new float[numParticles * 3];
-    for(int i = 0; i<numParticles; i++){
-        for(int j = 0; j < spacing; j++) {
-            xn = sin(b*yi) + (c * sin(b*xi));
-            zn = sin(a*yi) + (b * sin(a*xi));
-            yn = sin(a*xi) + (d * sin(a*yi));
-            xi = xn; yi = yn; zi = zn;
-        }
-        position[i * 3 + 0] = xn;
-        position[i * 3 + 1] = yn;
-        position[i * 3 + 2] = zn;
-    }
-    
-    // init shaders
-    tf.setup(numParticles, "shaders/transformFeedback.vert");
-    tf.addBufferObject("inPosition", "outPosition", 3, GL_RGB32F, position);
-    tf.generate();
-    
-    renderShader.load("shaders/render");
-    
-    // gui
-    gui.setup("latoo");
-    gui.add(a.set("a", 2.0, -3.0, 3.0));
-    gui.add(b.set("b", 1.526, -3.0, 3.0));
-    gui.add(c.set("c", 1.455, 0.5, 1.5));
-    gui.add(d.set("d", 1.139, 0.5, 1.5));
-    gui.add(da.set("da", 1, 0.999, 1.001));
-    gui.add(db.set("db", 1, 0.999, 1.001));
-    gui.add(dc.set("dc", 1, 0.999, 1.001));
-    gui.add(dd.set("dd", 1, 0.999, 1.001));
-    gui.add(scale.set("scale", 200, 1, 1000));
-    gui.add(opacity.set("opacity", 0.08, 0.0, 0.5));
-    gui.add(keys.setup("shortcuts", "\n  's' to modulate coefficients\n  'g' to randomize modulation\n  'b' to reset to coefficients\n  'r' to reset and pause\n  'f' for fullscreen"));
+    initShaders();
+    initGUI();
     
     // set camera
     camLoadPos("camPos");
@@ -102,7 +69,53 @@ void ofApp::draw(){
 }
 
 //--------------------------------------------------------------
+void ofApp::initShaders(void) {
+    // init coord buffer
+    float *position = new float[numParticles * 3];
+    for(int i = 0; i < numParticles; i++){
+        xn = sin(b*yi) + (c * sin(b*xi));
+        zn = sin(a*yi) + (b * sin(a*xi));
+        yn = sin(a*xi) + (d * sin(a*yi));
+        xi = xn; yi = yn; zi = zn;
+        position[i * 3 + 0] = xn;
+        position[i * 3 + 1] = yn;
+        position[i * 3 + 2] = zn;
+    }
+    
+    // init shaders
+    tf.setup(numParticles, "shaders/transformFeedback.vert");
+    tf.addBufferObject("inPosition", "outPosition", 3, GL_RGB32F, position);
+    tf.generate();
+    
+    renderShader.load("shaders/render");
+}
 
+
+//--------------------------------------------------------------
+void ofApp::initGUI(void) {
+    gui.setup("latoo");
+    gui.add(a.set("a", 2.0, -3.0, 3.0));
+    gui.add(b.set("b", 1.526, -3.0, 3.0));
+    gui.add(c.set("c", 1.455, 0.5, 1.5));
+    gui.add(d.set("d", 1.139, 0.5, 1.5));
+    gui.add(da.set("da", 1, 0.999, 1.001));
+    gui.add(db.set("db", 1, 0.999, 1.001));
+    gui.add(dc.set("dc", 1, 0.999, 1.001));
+    gui.add(dd.set("dd", 1, 0.999, 1.001));
+    gui.add(scale.set("scale", 200, 1, 1000));
+    gui.add(opacity.set("opacity", 0.08, 0.0, 0.5));
+
+    params  = "  's' to modulate coefficients\n";
+    params += "  'g' to randomize rate of change\n";
+    params += "  'b' to reset coefficients\n";
+    params += "  'r' to reset and pause\n";
+    params += "   <UP>  to accelerate\n";
+    params += "  <DOWN> to decelerate\n\n";
+    params += "  'f' for fullscreen\n";
+    gui.add(keys.setup("keys bindings\n", params));
+}
+
+//--------------------------------------------------------------
 void ofApp::camLoadPos(string _filename){
     ofFile inFile;
     inFile.open(_filename+".mat", ofFile::ReadOnly, true);

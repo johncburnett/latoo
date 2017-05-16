@@ -4,9 +4,11 @@
 #include "ofxTF.h"
 #include "ofxGui.h"
 
-// syphon is mac exclusive
 #if __APPLE__
-    #include "ofxSyphon.h"
+    #include "ofxSyphon.h" // mac exclusive
+    #define numParticles 3000000 // dGPU in OSX
+#else
+    #define numParticles 2200000 // iGPU in Linux
 #endif
 
 class ofApp : public ofBaseApp{
@@ -31,19 +33,21 @@ class ofApp : public ofBaseApp{
     private:
         float xi, yi, zi;
         float xn, yn, zn;
-        const int spacing;
     
         ofxPanel gui;
         ofParameter<float> a, b, c, d;
         ofParameter<float> da, db, dc, dd;
         ofParameter<float> scale, opacity;
         ofxLabel keys;
+        std::string params;
     
         ofxTF tf;
-        const int numParticles = 1500000;
         ofShader renderShader;
         ofEasyCam cam;
         ofImage particleImage;
+
+        void initShaders(void);
+        void initGUI(void);
     
         // save camera perspectives
         void camLoadPos(string);

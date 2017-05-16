@@ -19,7 +19,7 @@ This code allows for ways of modulating through this chaotic system.
 Clone to apps folder in your OF directory. Builds on mac and linux. 
 ```
 $ make
-$ make RunRelease
+$ make run
 ```
 
 ### Dependencies
